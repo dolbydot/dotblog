@@ -1,0 +1,18 @@
+{
+  "host": "0.0.0.0",
+  "db": "mongodb://localhost/dotblog",
+  "port": 9999,
+  "app":"DolbyDot",
+  "jwt": {
+    "expire": "14 days",
+    "secret": "shared-secret"
+  },
+  "serverVersion":"Express 4.16",
+  "session": {
+    "secret": "dotblog",
+    "key": "dotblog",
+    "maxAge": 1209600
+  },
+  "storageNamespace": "dot",
+  "abstractSaparater": "<--abstract-->"
+}

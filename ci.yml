@@ -1,0 +1,29 @@
+services:
+- docker:dind
+build:
+  image: docker
+  stage: build
+  variables:
+    DOCKER_DRIVER: overlay2
+  script:
+    - docker -v
+    - docker login -u $DOCKER_USERID -p $DOCKERPASSWD
+    - docker build -t $DOCKER_USERID/$APP_NAME .
+    - docker push $DOCKER_USERID/$APP_NAME
+lint:
+  image: node:latest
+  stage: test
+  script:
+    - npm i
+    - npm run lint
+test:
+  stage: test
+  script:
+    - echo "hello test done"
+deploy:
+  image: alpine
+  stage: deploy
+  script:
+  - apk update
+  - apk add openssh sshpass
+  - sh ./deploy.sh
